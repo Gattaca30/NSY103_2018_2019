@@ -1,0 +1,30 @@
+version: '2'
+services:
+  apache:
+    image: "test"
+    environment:
+      - "COUNTRY=fr"
+    ports:
+     - "80:80"
+     - "443:443"
+    networks:
+      osmosenet:
+        ipv4_address: test
+    volumes:
+     - "test"
+  oracle-xe:
+    image: "test"
+    environment:
+     - "HOST_HASH=$HOST_HASH"
+    ports:
+     - "1530:1521"
+    networks:
+      osmosenet:
+        ipv4_address: test
+networks:
+  osmosenet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: test
+          gateway: test
